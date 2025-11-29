@@ -1,0 +1,4 @@
+.topbar{ height:60px; background:#fff; display:flex; align-items:center; justify-content:flex-end; padding:0 20px; border-bottom:1px solid #ddd; gap:15px; }
+.search{ padding:8px 12px; border-radius:8px; border:1px solid #ccc; }
+.icon-btn{ background:none; border:none; font-size:20px; cursor:pointer; }
+.avatar{ width:35px; height:35px; background:#ccc; border-radius:50%; }

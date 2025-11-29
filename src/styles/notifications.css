@@ -1,0 +1,5 @@
+.notif-panel{position:fixed;right:-380px;top:0;width:360px;height:100vh;background:var(--card);box-shadow:-20px 0 40px rgba(0,0,0,0.08);transition:right .28s;z-index:60;padding:16px}
+.notif-panel.open{right:0}
+.notif-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:6px;border-bottom:1px solid #eee}
+.notif-list{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.notif-item{padding:10px;border-radius:8px;background:#fbfdff;border:1px solid #eef6ff}
