@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useState, Suspense, lazy, useMemo, useRef } from "react";
 import { Routes, Route, Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 
@@ -8,6 +9,7 @@ const UserManagement = lazy(() => import("./pages/UserManagement"));
 const Reports = lazy(() => import("./pages/Reports"));
 const Feedback = lazy(() => import("./pages/Feedback"));
 const Notifications = lazy(() => import("./pages/Notifications"));
+const Profile = lazy(() => import("./pages/Profile"));
 
 /*
   Layout contains sidebar + topbar + search dropdown (global suggestion engine).
@@ -106,6 +108,14 @@ function Layout() {
     }
   }
 
+  // Placeholder current user — replace with your auth state
+const currentUser = {
+  id: "u1",
+  name: "Ankita Sharma",
+  email: "ankita@example.com",
+  avatarUrl: localStorage.getItem("profileAvatar") || ""
+};
+
   return (
     <div className={`app-shell ${collapsed ? "sidebar-collapsed" : ""}`}>
       {/* ===== SIDEBAR ===== */}
@@ -115,7 +125,7 @@ function Layout() {
             <div className="logo">dE</div>
             <div className="brand-text">digiEvent</div>
           </div>
-          
+
         </div>
 
         <nav className="nav-list">
@@ -139,13 +149,10 @@ function Layout() {
             <div className="nav-icon">💬</div>
             <div className="nav-label">Feedback</div>
           </NavLink>
-          <NavLink to="/notifications" className="nav-item">
-            <div className="nav-icon">🔔</div>
-            <div className="nav-label">Notifications</div>
-          </NavLink>
+          {/* Notifications nav item removed per request */}
         </nav>
 
-        
+
       </aside>
 
       {/* ===== TOPBAR with search dropdown ===== */}
@@ -203,9 +210,36 @@ function Layout() {
           </div>
         </div>
 
-        <div className="top-right">
+        <div className="top-right" style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <button className="icon-btn" onClick={() => navigate("/notifications")} title="Notifications">🔔</button>
-          <div className="avatar" title="Profile"></div>
+
+          {/* Profile avatar placed at far right (no dropdown). clicking navigates to /profile */}
+          <button
+            onClick={() => navigate("/profile")}
+            title={currentUser?.name || "Profile"}
+            aria-label="Profile"
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: "50%",
+              background: currentUser?.avatarUrl ? "transparent" : "#EDF2F7",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 700,
+              color: "#2D3748",
+              border: "none",
+              cursor: "pointer"
+            }}
+          >
+            {currentUser?.avatarUrl ? (
+              <img src={currentUser.avatarUrl} alt="profile" style={{ width: 36, height: 36, borderRadius: "50%" }} />
+            ) : (
+              <span style={{ fontSize: 12 }}>
+                { (currentUser?.name || "U").split(" ").map(n => n[0]).slice(0,2).join("").toUpperCase() }
+              </span>
+            )}
+          </button>
         </div>
       </header>
 
@@ -232,6 +266,7 @@ export default function App() {
         <Route path="reports" element={<Reports />} />
         <Route path="feedback" element={<Feedback />} />
         <Route path="notifications" element={<Notifications />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
