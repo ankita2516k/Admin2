@@ -171,4 +171,194 @@ body{background:var(--bg);color:#0f172a}
 .quick-row:last-child {
   border-bottom: none;
 }
+/* === Layout restore using CSS variables set by Layout.jsx ===
+   Paste this at the end of src/styles/App.css
+*/
+:root {
+  /* default fallbacks (will be overridden inline by Layout.jsx) */
+  --sidebar-width: 230px;
+  --sidebar-collapsed: 60px;
+  --topbar-height: 64px;
+}
+
+/* Fix sidebar to the left so it doesn't push content with flex layout */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  z-index: 30;
+  overflow-y: auto;
+}
+
+/* support collapsed class if you use it elsewhere */
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+/* Right section starts after the fixed sidebar */
+.right-section {
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Topbar should align to the right section and stay fixed at the top of it */
+.topbar {
+  position: fixed;
+  left: var(--sidebar-width);
+  right: 0;
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  z-index: 25;
+  background: transparent; /* keep visuals unchanged */
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+/* When sidebar has collapsed class (if toggled) the left offsets should follow */
+.sidebar.collapsed ~ .right-section,
+.sidebar.collapsed ~ .right-section .topbar {
+  margin-left: var(--sidebar-collapsed);
+  left: var(--sidebar-collapsed);
+}
+
+/* Main content sits below the topbar */
+.content-area {
+  margin-top: var(--topbar-height);
+  padding: 24px; /* match your UI spacing; adjust if needed */
+  min-height: calc(100vh - var(--topbar-height));
+}
+
+/* Responsive safety: ensure small widths still show correctly */
+@media (max-width: 900px) {
+  :root {
+    --sidebar-width: 60px;
+  }
+  .sidebar { width: 60px; }
+  .right-section { margin-left: 60px; }
+  .topbar { left: 60px; }
+}
+/* ===== Topbar: centered search + right-side notifications/avatar ===== */
+/* Add at end of src/styles/App.css */
+
+/* ensure topbar uses flex layout */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  box-sizing: border-box;
+  height: var(--topbar-height);
+  background: transparent;
+}
+
+/* left: toggle button area (keeps logo/toggle) */
+.topbar-left {
+  display: flex;
+  align-items: center;
+  min-width: 56px; /* reserve space for toggle */
+  z-index: 26;
+}
+
+/* middle: search area — flex:1 to take available center space and center its child */
+.topbar-middle {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* centers the search bar horizontally */
+  align-items: center;
+  padding: 0 8px;
+  /* keep topbar visually same by not changing background */
+}
+
+/* actual search input styling */
+.search-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.search-input {
+  width: min(820px, 72%); /* responsive cap, adjust if you prefer */
+  min-width: 260px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  outline: none;
+  font-size: 14px;
+}
+
+/* right: notification + avatar */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 120px; /* ensures right icons sit at right edge */
+  justify-content: flex-end;
+  padding-left: 8px;
+}
+
+/* small icon-button styling */
+.icon-btn {
+  border: none;
+  background: transparent;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* images inside icon buttons */
+.icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* avatar */
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0,0,0,0.06);
+}
+
+/* notification badge */
+.notif-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 12px;
+  background: #ff4d4f;
+  color: #fff;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+}
+
+/* responsive adjustments */
+@media (max-width: 1100px) {
+  .search-input { width: 60%; min-width: 180px; }
+  .topbar-right { min-width: 100px; }
+}
+@media (max-width: 700px) {
+  .search-input { width: 100%; min-width: 120px; }
+  .topbar-middle { padding: 0 6px; }
+}
+
+
 
