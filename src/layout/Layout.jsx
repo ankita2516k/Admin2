@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Sidebar, Topbar } from "../components/UIComponents";
 import "../styles/App.css";
+import { NotificationDrawer } from "../components/NotificationCenter";
 
 export default function Layout() {
   const [collapsed, setCollapsed] = useState(false);
@@ -28,6 +29,7 @@ export default function Layout() {
 
         <main className="content-area">
           <Outlet />
+          <NotificationDrawer />
         </main>
       </div>
     </div>

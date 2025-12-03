@@ -1,6 +1,7 @@
 // src/components/UIComponents.jsx
 import React, { useEffect, useState, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { NotificationBell } from "./NotificationCenter"; // adjust path if needed
 
 /* ---------------- Sidebar (unchanged markup + classNames) ---------------- */
 export function Sidebar({ collapsed }) {
@@ -260,6 +261,13 @@ function BellIcon({ size = 22 }) {
     </svg>
   );
 }
+{/* Example: place in the right-side icons area of topbar */}
+<div className="topbar-right" style={{ display: "flex", gap: 12, alignItems: "center" }}>
+  {/* existing icons */}
+  <NotificationBell />
+  {/* existing profile/avatar */}
+</div>
+
 
 /* ---------------- UserMenu exported ----------------
    - Reads avatar from localStorage.user_avatar
