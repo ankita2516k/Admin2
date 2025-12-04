@@ -3,9 +3,9 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layout/Layout";
 
-// Pages (matching the filenames in your src/pages folder)
+// Pages
 import Dashboard from "./pages/Dashboard";
-import EventManagement from "./pages/EventManagement";
+import AdminApprovalList from "./pages/AdminApprovalList"; // Event Management (Admin)
 import UserManagement from "./pages/UserManagement";
 import Reports from "./pages/Reports";
 import Feedback from "./pages/Feedback";
@@ -15,15 +15,21 @@ import Profile from "./pages/Profile";
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      {/* Use /* so Layout matches ALL paths like /events, /admin/events, etc. */}
+      <Route path="/*" element={<Layout />}>
+        {/* Default dashboard at / */}
         <Route index element={<Dashboard />} />
-        <Route path="/events" element={<EventManagement />} />
-        <Route path="/users" element={<UserManagement />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/feedback" element={<Feedback />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/profile" element={<Profile />} />
-        
+
+        {/* Event Management routes */}
+        <Route path="events" element={<AdminApprovalList />} />
+        <Route path="admin/events" element={<AdminApprovalList />} />
+
+        {/* Other pages */}
+        <Route path="users" element={<UserManagement />} />
+        <Route path="reports" element={<Reports />} />
+        <Route path="feedback" element={<Feedback />} />
+        <Route path="notifications" element={<Notifications />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>
   );

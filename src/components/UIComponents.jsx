@@ -18,11 +18,12 @@ export function Sidebar({ collapsed }) {
           <span className="nav-text">Dashboard</span>
         </NavLink>
 
-        <NavLink to="/events" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
+        <NavLink to="/admin/events" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
           <span className="nav-icon">📅</span>
-          <span className="nav-text">Event Management</span>
-        </NavLink>
+          <span className="nav-text">Event Management </span>
+       </NavLink>
 
+        
         <NavLink to="/users" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
           <span className="nav-icon">👥</span>
           <span className="nav-text">User Management</span>
@@ -37,6 +38,7 @@ export function Sidebar({ collapsed }) {
           <span className="nav-icon">💬</span>
           <span className="nav-text">Feedback</span>
         </NavLink>
+        
       </nav>
     </aside>
   );
