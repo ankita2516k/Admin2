@@ -4,13 +4,13 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./layout/Layout";
 
 // Pages
-import Dashboard from "./pages/Dashboard";
-import AdminApprovalList from "./pages/AdminApprovalList"; // Event Management (Admin)
-import UserManagement from "./pages/UserManagement";
-import Reports from "./pages/Reports";
-import Feedback from "./pages/Feedback";
-import Notifications from "./pages/Notifications";
-import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard_a";
+import AdminApprovalList from "./pages/AdminApprovalList_a"; // Event Management (Admin)
+import UserManagement from "./pages/UserManagement_a";
+import Reports from "./pages/Reports_a";
+import Feedback from "./pages/Feedback_a";
+import Notifications from "./pages/Notifications_a";
+import Profile from "./pages/Profile_a";
 
 export default function App() {
   return (
