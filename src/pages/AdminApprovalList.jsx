@@ -271,16 +271,6 @@ export default function AdminApprovalList() {
           </svg>
           <input placeholder="Search events or organizers..." value={query} onChange={(e) => { setQuery(e.target.value); setPage(1); }} />
         </div>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <select className="ae-select" value={pageSize} onChange={(e) => { setPageSize(Number(e.target.value)); setPage(1); }}>
-            <option value={5}>5 / page</option>
-            <option value={10}>10 / page</option>
-            <option value={20}>20 / page</option>
-          </select>
-
-          
-        </div>
       </div>
 
       <div className="ae-table-card" role="table" aria-label="event list">
@@ -323,7 +313,12 @@ export default function AdminApprovalList() {
         </table>
 
         <div className="ae-pager">
-          <div className="info">Showing {(page - 1) * pageSize + 1} - {Math.min(page * pageSize, total)} of {total}</div>
+          <div className="ae-pager">
+           <div className="info">
+             Showing {(page - 1) * pageSize + 1} - {Math.min(page * pageSize, total)} of {total}
+           </div>
+          </div>
+
           <div className="controls">
             <button className="ae-btn ae-btn-muted" onClick={() => setPage(1)} disabled={page === 1}>First</button>
             <button className="ae-btn ae-btn-muted" onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>Prev</button>

@@ -21,7 +21,6 @@ export default function App() {
         <Route index element={<Dashboard />} />
 
         {/* Event Management routes */}
-        <Route path="events" element={<AdminApprovalList />} />
         <Route path="admin/events" element={<AdminApprovalList />} />
 
         {/* Other pages */}
