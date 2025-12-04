@@ -18,23 +18,23 @@ export function Sidebar({ collapsed }) {
           <span className="nav-text">Dashboard</span>
         </NavLink>
 
-        <NavLink to="/admin/events" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
+        <NavLink to="/admin/events_a" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
           <span className="nav-icon">📅</span>
           <span className="nav-text">Event Management </span>
        </NavLink>
 
         
-        <NavLink to="/users" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
+        <NavLink to="/users_a" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
           <span className="nav-icon">👥</span>
           <span className="nav-text">User Management</span>
         </NavLink>
 
-        <NavLink to="/reports" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
+        <NavLink to="/reports_a" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
           <span className="nav-icon">📈</span>
           <span className="nav-text">Reports</span>
         </NavLink>
 
-        <NavLink to="/feedback" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
+        <NavLink to="/feedback_a" className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}>
           <span className="nav-icon">💬</span>
           <span className="nav-text">Feedback</span>
         </NavLink>
@@ -324,7 +324,7 @@ export function UserMenu() {
       <div
         role="button"
         title="Notifications"
-        onClick={() => navigate("/notifications")}
+        onClick={() => navigate("/notifications_a")}
         style={{ position: "relative", cursor: "pointer", padding: 6 }}
       >
         <BellIcon />
@@ -342,7 +342,7 @@ export function UserMenu() {
         )}
       </div>
 
-      <div role="button" title="Profile" onClick={() => navigate("/profile")} style={{ cursor: "pointer" }}>
+      <div role="button" title="Profile" onClick={() => navigate("/profile_a")} style={{ cursor: "pointer" }}>
         {avatar ? (
           <img src={avatar} alt="avatar" style={{ width: 38, height: 38, borderRadius: "50%", objectFit: "cover", border: "2px solid rgba(0,0,0,0.06)" }} />
         ) : (

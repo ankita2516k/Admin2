@@ -21,14 +21,14 @@ export default function App() {
         <Route index element={<Dashboard />} />
 
         {/* Event Management routes */}
-        <Route path="admin/events" element={<AdminApprovalList />} />
+        <Route path="admin/events_a" element={<AdminApprovalList />} />
 
         {/* Other pages */}
-        <Route path="users" element={<UserManagement />} />
-        <Route path="reports" element={<Reports />} />
-        <Route path="feedback" element={<Feedback />} />
-        <Route path="notifications" element={<Notifications />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="users_a" element={<UserManagement />} />
+        <Route path="reports_a" element={<Reports />} />
+        <Route path="feedback_a" element={<Feedback />} />
+        <Route path="notifications_a" element={<Notifications />} />
+        <Route path="profile_a" element={<Profile />} />
       </Route>
     </Routes>
   );
