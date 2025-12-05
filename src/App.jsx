@@ -1,7 +1,11 @@
 // src/App.jsx
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Layout from "./layout/Layout";
+import React, { useState } from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
+
+// Layout pieces (moved here from src/layout/Layout.jsx)
+import { Sidebar, Topbar } from "./components/UIComponents";
+import { NotificationDrawer } from "./components/NotificationCenter";
+import "./styles/App.css";
 
 // Pages
 import Dashboard from "./pages/Dashboard_a";
@@ -12,10 +16,40 @@ import Feedback from "./pages/Feedback_a";
 import Notifications from "./pages/Notifications_a";
 import Profile from "./pages/Profile_a";
 
+// 🔹 This is your old Layout.jsx, now inside App.jsx
+function Layout() {
+  const [collapsed, setCollapsed] = useState(false);
+
+  // values match your original UI
+  const sidebarWidth = collapsed ? "60px" : "230px";
+  const topbarHeight = "64px";
+
+  return (
+    <div
+      className="layout-container"
+      style={{
+        "--sidebar-width": sidebarWidth,
+        "--topbar-height": topbarHeight,
+      }}
+    >
+      <Sidebar collapsed={collapsed} />
+
+      <div className="right-section">
+        <Topbar collapsed={collapsed} setCollapsed={setCollapsed} />
+
+        <main className="content-area">
+          <Outlet />
+          <NotificationDrawer />
+        </main>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <Routes>
-      {/* Use /* so Layout matches ALL paths like /events, /admin/events, etc. */}
+      {/* Layout wraps all routes */}
       <Route path="/*" element={<Layout />}>
         {/* Default dashboard at / */}
         <Route index element={<Dashboard />} />
