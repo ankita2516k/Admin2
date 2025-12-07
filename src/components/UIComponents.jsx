@@ -130,19 +130,19 @@ export function SearchBar() {
     setQ("");
     // Navigate depending on type. We pass query param `q` so pages can read it.
     if (item.kind === "event") {
-      navigate(`/events?q=${encodeURIComponent(item.title)}`);
+      navigate(`/admin/events_a?q=${encodeURIComponent(item.title)}`);
     } else if (item.kind === "user") {
-      navigate(`/users?q=${encodeURIComponent(item.name)}`);
+      navigate(`/users_a?q=${encodeURIComponent(item.name)}`);
     } else if (item.kind === "report") {
-      navigate(`/reports?q=${encodeURIComponent(item.title)}`);
+      navigate(`/reports_a?q=${encodeURIComponent(item.title)}`);
     } else if (item.kind === "notification") {
-      navigate(`/notifications`);
+      navigate(`/notifications_a`);
     } else if (item.kind === "action") {
       // quick actions
-      if (item.title.toLowerCase().includes("events")) navigate(`/events`);
-      else if (item.title.toLowerCase().includes("users")) navigate(`/users`);
-      else if (item.title.toLowerCase().includes("report")) navigate(`/reports`);
-      else navigate(`/`);
+      if (item.title.toLowerCase().includes("events")) navigate(`/admin/events_a`);
+      else if (item.title.toLowerCase().includes("users")) navigate(`/users_a`);
+      else if (item.title.toLowerCase().includes("report")) navigate(`/reports_a`);
+      else navigate(`/_a`);
     }
   }
 
